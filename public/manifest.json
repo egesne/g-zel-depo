@@ -7,7 +7,8 @@
   "host_permissions": [
     "http://*/*",
     "https://*/*",
-    "https://api.mymemory.translated.net/*"
+    "https://api.mymemory.translated.net/*",
+    "https://tessdata.projectnaptha.com/*"
   ],
   "action": {
     "default_title": "Manga Translator",
