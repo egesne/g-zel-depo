@@ -31,7 +31,11 @@ async function scanImages(targetLanguage: string): Promise<void> {
     return;
   }
 
-  const worker = await createWorker("eng");
+  const worker = await createWorker("eng", 1, {
+    workerPath: chrome.runtime.getURL("tesseract/worker.min.js"),
+    corePath: chrome.runtime.getURL("tesseract/core/tesseract-core.wasm.js"),
+    langPath: "https://tessdata.projectnaptha.com/4.0.0"
+  });
   let completed = 0;
 
   try {
