@@ -1,21 +1,30 @@
 import { defineConfig } from "vite";
 import { resolve } from "node:path";
 
-export default defineConfig({
-  build: {
-    outDir: "dist",
-    emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        popup: resolve(__dirname, "popup.html"),
-        content: resolve(__dirname, "src/content.ts")
-      },
-      output: {
-        entryFileNames: (chunk) =>
-          chunk.name === "content" ? "content.js" : "assets/[name].js",
-        chunkFileNames: "assets/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash][extname]"
+export default defineConfig([
+  {
+    configFile: false,
+    publicDir: "public",
+    build: {
+      outDir: "dist",
+      emptyOutDir: true,
+      rollupOptions: { input: resolve(process.cwd(), "popup.html") }
+    }
+  },
+  {
+    configFile: false,
+    publicDir: false,
+    build: {
+      outDir: "dist",
+      emptyOutDir: false,
+      rollupOptions: {
+        input: resolve(process.cwd(), "src/content.ts"),
+        output: {
+          format: "iife",
+          inlineDynamicImports: true,
+          entryFileNames: "content.js"
+        }
       }
     }
   }
-});
+]);
