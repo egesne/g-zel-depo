@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-tesseract-assets.mjs",
+    "build": "vite build && vite build --config vite.content.config.ts && node scripts/copy-tesseract-assets.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
