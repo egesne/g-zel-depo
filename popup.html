@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manga Translator</title>
+  </head>
+  <body>
+    <main id="app">
+      <header>
+        <div class="mark">MT</div>
+        <div>
+          <h1>Manga Translator</h1>
+          <p>Sayfadaki manga görsellerini çevir.</p>
+        </div>
+      </header>
+      <label for="target-language">Hedef dil</label>
+      <select id="target-language">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+      </select>
+      <button id="scan-button">Sayfadaki görselleri tara</button>
+      <p id="status" role="status">Hazır. Asura Scans gibi sitelerde manga sayfasını aç.</p>
+      <footer>OCR: Tesseract.js · Çeviri: MyMemory</footer>
+    </main>
+    <script type="module" src="/src/popup.ts"></script>
+  </body>
+</html>
