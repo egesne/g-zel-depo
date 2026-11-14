@@ -22,7 +22,20 @@ chrome.runtime.onMessage.addListener((message: ScanMessage, _sender, sendRespons
 });
 
 async function scanImages(targetLanguage: string): Promise<void> {
-  const images = [...document.images].filter((img) =>
+  const candidates = [...document.images];
+  for (const image of candidates) {
+    const lazySource =
+      image.getAttribute("data-src") ||
+      image.getAttribute("data-lazy-src") ||
+      image.getAttribute("data-original") ||
+      image.getAttribute("data-cfsrc");
+    if (lazySource && (!image.currentSrc || image.currentSrc.startsWith("data:"))) {
+      image.src = lazySource;
+    }
+    image.loading = "eager";
+  }
+  await Promise.all(candidates.map((image) => image.decode().catch(() => undefined)));
+  const images = candidates.filter((img) =>
     img.complete && img.naturalWidth >= 180 && img.naturalHeight >= 180
   );
 
