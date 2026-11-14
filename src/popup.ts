@@ -1,3 +1,5 @@
+import "./style.css";
+
 const scanButton = document.querySelector<HTMLButtonElement>("#scan-button")!;
 const status = document.querySelector<HTMLParagraphElement>("#status")!;
 const language = document.querySelector<HTMLSelectElement>("#target-language")!;
